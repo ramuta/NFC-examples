@@ -4,7 +4,16 @@
           android:versionCode="1"
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="19"/>
+
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature
+            android:name="android.hardware.nfc"
+            android:required="true" />
+
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
+
+        <!-- Main Activity -->
         <activity android:name=".activity.MainActivity"
                   android:label="@string/app_name">
             <intent-filter>
@@ -13,8 +22,29 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.WriteActivity"/>
-    </application>
+        <!-- Write Activity -->
+        <activity
+                android:name=".activity.WriteActivity"
+                android:parentActivityName="com.example.NFCtagsTest.activity.MainActivity" >
+                <meta-data
+                        android:name="android.support.PARENT_ACTIVITY"
+                        android:value="com.example.NFCtagsTest.activity.MainActivity" />
+        </activity>
 
-    <uses-permission android:name="android.permission.NFC" />
+        <!-- Read Activity -->
+        <activity
+                android:name=".activity.ReadActivity"
+                android:parentActivityName="com.example.NFCtagsTest.activity.MainActivity" >
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.example.NFCtagsTest.activity.MainActivity" />
+
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+
+        </activity>
+    </application>
 </manifest>

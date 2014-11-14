@@ -14,6 +14,7 @@ public class MainActivity extends Activity {
 
     // buttons
     private Button writeButton;
+    private Button readButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,9 +31,23 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 if(Debug.ON) {
                     Log.i(TAG, "Write button clicked");
-                    Intent writeIntent = new Intent(MainActivity.this, WriteActivity.class);
-                    startActivity(writeIntent);
                 }
+
+                Intent writeIntent = new Intent(MainActivity.this, WriteActivity.class);
+                startActivity(writeIntent);
+            }
+        });
+
+        readButton = (Button) findViewById(R.id.mainReadButton);
+        readButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Debug.ON) {
+                    Log.i(TAG, "Read button clicked");
+                }
+
+                Intent readIntent = new Intent(MainActivity.this, ReadActivity.class);
+                startActivity(readIntent);
             }
         });
     }

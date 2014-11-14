@@ -1,5 +1,6 @@
 package com.example.NFCtagsTest.activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -45,6 +46,9 @@ public class WriteActivity extends Activity {
         if(Debug.ON) {
             Log.i(TAG, "Write activity started");
         }
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         writeButton = (Button) findViewById(R.id.writeButton);
         addText = (EditText) findViewById(R.id.writeAddText);
